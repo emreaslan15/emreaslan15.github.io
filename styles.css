@@ -191,8 +191,14 @@ img {
   width: 96px;
   height: 96px;
   border-radius: 24px;
-  background: radial-gradient(circle at top left, var(--accent), rgba(127, 90, 240, 0.2));
+  overflow: hidden; /* ← THIS is the missing piece */
+  background: radial-gradient(
+    circle at top left,
+    var(--accent),
+    rgba(127, 90, 240, 0.2)
+  );
 }
+
 
 .profile__initials {
   font-weight: 700;
