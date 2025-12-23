@@ -191,7 +191,7 @@ img {
   width: 96px;
   height: 96px;
   border-radius: 24px;
-  overflow: hidden; /* ← THIS is the missing piece */
+  overflow: hidden;
   background: radial-gradient(
     circle at top left,
     var(--accent),
