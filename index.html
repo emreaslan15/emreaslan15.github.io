@@ -8,145 +8,207 @@
 	<link rel="icon" href="favicon.svg" type="image/svg+xml" />
 	<link rel="shortcut icon" href="favicon.svg" type="image/svg+xml" />
 	<style>
+		:root {
+			--bg: #f3f7f2;
+			--bg-strong: #dceadf;
+			--panel: rgba(255, 255, 255, 0.92);
+			--panel-strong: #ffffff;
+			--panel-soft: #f8faf8;
+			--primary: #16251c;
+			--primary-soft: #213a2d;
+			--accent: #2f5d4b;
+			--accent-strong: #224536;
+			--accent-soft: #dfeee4;
+			--text: #16251c;
+			--muted: #4d665d;
+			--border: #dce8df;
+			--shadow: 0 18px 45px rgba(22, 37, 28, 0.12);
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
 		html {
-			min-height: 100%;
-			background: #e6e6e6;
-			background-attachment: fixed;
+			scroll-behavior: smooth;
+			scroll-padding-top: 20px;
 		}
 
 		body {
 			margin: 0;
-			font-family: Arial, Helvetica, sans-serif;
-			font-size: 12px;
-			color: #1f1f1f;
-			background: transparent;
+			font-family: "Segoe UI", Arial, sans-serif;
+			font-size: 14px;
+			line-height: 1.5;
+			color: var(--text);
+			background:
+				radial-gradient(circle at top, rgba(191, 219, 254, 0.6), transparent 32%),
+				linear-gradient(180deg, var(--bg) 0%, #f8fafc 100%);
 		}
 
 		a {
-			color: #bb1919;
-			text-decoration: underline;
-		}
-
-		a:hover {
-			color: #8f0f0f;
+			color: var(--accent-strong);
 			text-decoration: none;
 		}
 
+		a:hover,
+		a:focus-visible {
+			text-decoration: underline;
+		}
+
 		.page-wrap {
-			width: 980px;
-			max-width: calc(100% - 16px);
-			margin: 18px auto;
-			border: 1px solid #c5c5c5;
-			background: #fff;
-			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+			max-width: 1120px;
+			margin: 22px auto 28px;
+			background: rgba(255, 255, 255, 0.68);
+			backdrop-filter: blur(8px);
+			border: 1px solid rgba(148, 163, 184, 0.25);
+			border-radius: 18px;
+			overflow: hidden;
+			box-shadow: var(--shadow);
 		}
 
 		.topbar {
-			background: #111;
-			color: #e6e6e6;
-			font-size: 11px;
-			padding: 7px 10px;
-			border-bottom: 1px solid #000;
+			background: var(--primary);
+			color: #e2e8f0;
+			font-size: 0.74rem;
+			letter-spacing: 0.04em;
+			padding: 10px 20px;
 			text-align: right;
 		}
 
 		.brand {
-			background: #fff;
-			border-top: 1px solid #f6f6f6;
-			border-bottom: 4px solid #bb1919;
-			padding: 14px 12px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 20px;
+			padding: 22px 20px 18px;
+			background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(239,246,255,0.96) 100%);
+			border-bottom: 1px solid var(--border);
 		}
 
 		.brand h1 {
 			margin: 0;
-			font-family: Arial, Helvetica, sans-serif;
-			font-size: 34px;
-			letter-spacing: 0.5px;
-			color: #bb1919;
-			text-shadow: none;
+			font-size: clamp(1.8rem, 3.2vw, 2.7rem);
+			line-height: 1.08;
+			letter-spacing: -0.04em;
+			color: var(--primary);
 		}
 
 		.brand p {
-			margin: 4px 0 0;
-			color: #343434;
-			font-size: 12px;
+			margin: 7px 0 0;
+			font-size: 0.9rem;
+			color: var(--muted);
 		}
 
+		.eyebrow {
+			margin: 0 0 7px;
+			font-size: 0.62rem;
+			font-weight: 800;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+			color: var(--accent-strong);
+		}
 
 		.brand-track {
 			white-space: nowrap;
+			font-weight: 600;
+			color: var(--accent-strong);
 		}
 
 		.brand-sep {
 			display: inline;
+			color: #94a3b8;
+		}
+
+		.brand-badges {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+			gap: 8px;
+		}
+
+		.badge {
+			display: inline-flex;
+			align-items: center;
+			padding: 7px 11px;
+			border-radius: 999px;
+			font-size: 0.69rem;
+			font-weight: 700;
+			letter-spacing: 0.05em;
+			text-transform: uppercase;
+			background: var(--accent-soft);
+			color: var(--accent-strong);
+			border: 1px solid rgba(37, 99, 235, 0.12);
 		}
 
 		.primary-nav {
-			background: #2b2b2b;
-			border-bottom: 3px solid #bb1919;
-			padding: 0;
 			display: flex;
-			align-items: stretch;
-			overflow: hidden;
+			align-items: center;
+			justify-content: space-between;
+			background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+			border-bottom: 3px solid var(--accent);
 		}
 
 		.primary-nav-links {
-			white-space: nowrap;
-			overflow-x: auto;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0;
 			flex: 1;
 		}
 
 		.primary-nav-links a {
-			display: inline-block;
-			padding: 8px 10px;
-			color: #fff;
-			text-decoration: none;
-			font-size: 12px;
-			font-weight: bold;
-			border-right: 1px solid #4b4b4b;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 42px;
+			padding: 9px 14px;
+			color: #e2e8f0;
+			font-size: 0.76rem;
+			font-weight: 700;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			border-right: 1px solid rgba(148, 163, 184, 0.25);
+			transition: background 0.2s ease;
 		}
 
-		.primary-nav-links a:hover {
-			background: #bb1919;
-			color: #fff;
+		.primary-nav-links a:hover,
+		.primary-nav-links a:focus-visible {
+			background: rgba(37, 99, 235, 0.25);
 			text-decoration: none;
 		}
 
 		.nav-social {
-			display: inline-flex;
-			align-items: center;
-			gap: 0;
-			border-left: 1px solid #4b4b4b;
+			display: flex;
+			align-items: stretch;
+			border-left: 1px solid rgba(148, 163, 184, 0.25);
 		}
 
 		.nav-social a {
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
-			width: 38px;
-			height: 32px;
-			color: #fff;
-			text-decoration: none;
-			border-right: 1px solid #4b4b4b;
+			width: 46px;
+			height: 42px;
+			color: #f8fafc;
+			border-right: 1px solid rgba(148, 163, 184, 0.25);
 		}
 
-		.nav-social a:hover {
-			background: #bb1919;
-			color: #fff;
+		.nav-social a:hover,
+		.nav-social a:focus-visible {
+			background: rgba(37, 99, 235, 0.2);
 			text-decoration: none;
 		}
 
 		.nav-social svg {
-			width: 19px;
-			height: 19px;
+			width: 18px;
+			height: 18px;
 			fill: currentColor;
 		}
 
 		.ticker {
-			background: #bb1919;
+			background: linear-gradient(90deg, var(--accent) 0%, var(--accent-strong) 100%);
 			color: #fff;
-			padding: 6px 10px;
-			font-weight: bold;
+			padding: 8px 20px;
+			font-weight: 600;
 			overflow: hidden;
 		}
 
@@ -158,220 +220,349 @@
 		.ticker-track {
 			display: inline-block;
 			padding-left: 100%;
-			will-change: transform;
-			animation: ticker-scroll 20s linear infinite;
+			animation: ticker-scroll 18s linear infinite;
 		}
 
 		@keyframes ticker-scroll {
-			0% {
-				transform: translateX(0);
-			}
-
-			100% {
-				transform: translateX(-100%);
-			}
+			0% { transform: translateX(0); }
+			100% { transform: translateX(-100%); }
 		}
 
 		@media (prefers-reduced-motion: reduce) {
-			.ticker-track {
-				animation: none;
-				padding-left: 0;
-			}
+			.ticker-track { animation: none; padding-left: 0; }
 		}
 
 		.main {
+			display: block;
 			width: 100%;
-			border-collapse: collapse;
-		}
-
-		.sidebar {
-			width: 240px;
-			vertical-align: top;
-			background: #f5f5f5;
-			border-right: 1px solid #dddddd;
-			padding: 8px;
+			padding: 20px;
+			background: transparent;
 		}
 
 		.content {
-			vertical-align: top;
-			background: #fff;
-			padding: 8px;
+			display: block;
+		}
+
+		@media (min-width: 641px) {
+			.content {
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 16px;
+				align-items: start;
+			}
+
+			.box {
+				width: 100%;
+				margin: 0;
+				grid-column: 1 / -1;
+			}
+
+			#about,
+			#projects,
+			#skills,
+			#education,
+			#experience-notes,
+			#experience,
+			#languages,
+			#contact {
+				grid-column: 1 / -1;
+			}
 		}
 
 		.box {
-			border: 1px solid #d8d8d8;
-			margin-bottom: 10px;
-			background: #fff;
+			background: rgba(255,255,255,0.9);
+			border: 1px solid var(--border);
+			border-radius: 16px;
+			box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
+			overflow: hidden;
+			scroll-margin-top: 20px;
 		}
 
-		.box h2,
-		.box h3 {
+		.box > summary {
+			list-style: none;
 			margin: 0;
-			font-size: 12px;
-			color: #bb1919;
-			background: #f2f2f2;
-			padding: 6px 8px;
-			border-bottom: 2px solid #bb1919;
-			letter-spacing: 0.3px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 12px;
+			padding: 12px 16px;
+			font-size: 0.74rem;
+			font-weight: 800;
+			letter-spacing: 0.08em;
 			text-transform: uppercase;
+			color: #234735;
+			background: linear-gradient(180deg, #f8faf8 0%, #edf5ef 100%);
+			border-bottom: 1px solid var(--border);
+			cursor: pointer;
+			user-select: none;
+		}
+
+		.box > summary::-webkit-details-marker {
+			display: none;
+		}
+
+		.box > summary::after {
+			content: "▾";
+			font-size: 0.9rem;
+			line-height: 1;
+			color: var(--accent-strong);
+			transition: transform 0.2s ease;
+		}
+
+		.box[open] > summary::after {
+			transform: rotate(180deg);
+		}
+
+		.box > summary:hover,
+		.box > summary:focus-visible {
+			filter: brightness(0.98);
 		}
 
 		.box .inner {
-			padding: 8px;
-			line-height: 1.5;
+			padding: 14px 16px 16px;
+			line-height: 1.48;
+			color: var(--text);
+		}
+
+		.box .inner p {
+			margin: 0 0 0.72rem;
+		}
+
+		.box .inner p:last-child {
+			margin-bottom: 0;
+		}
+
+		.box:nth-child(1),
+		.box:nth-child(2),
+		.box:nth-child(4),
+		.box:nth-child(5),
+		.box:nth-child(7),
+		.box:nth-child(8),
+		.box:nth-child(9),
+		.box:nth-child(10) {
+			display: block;
+		}
+
+		#about,
+		#projects,
+		#skills,
+		#education,
+		#experience-notes,
+		#experience,
+		#languages,
+		#contact {
+			grid-column: span 1;
 		}
 
 		.modules-line {
 			display: grid;
-			grid-template-columns: 62px 1fr;
-			column-gap: 0;
-			align-items: start;
+			grid-template-columns: 76px 1fr;
+			gap: 6px 10px;
+			margin-top: 2px;
 		}
 
 		.modules-label {
-			display: block;
+			font-weight: 700;
+			color: var(--primary-soft);
 		}
 
 		.modules-content {
-			display: block;
-		}
-
-		.menu {
-			margin: 0;
-			padding: 0;
-			list-style: none;
-		}
-
-		.menu li {
-			border-bottom: 1px solid #dfdfdf;
-			padding: 5px 0;
-			font-weight: bold;
+			color: var(--muted);
 		}
 
 		.story {
-			border-bottom: 1px solid #e3e3e3;
-			padding: 7px 0 8px;
+			padding: 8px 0;
+			border-bottom: 1px solid var(--border);
 		}
 
 		.story:last-child {
 			border-bottom: none;
-			padding-bottom: 2px;
+			padding-bottom: 0;
 		}
 
 		.story h4 {
-			margin: 0 0 2px;
-			font-size: 20px;
-			line-height: 1.2;
-			color: #1f1f1f;
+			margin: 0 0 3px;
+			font-size: clamp(0.88rem, 1.25vw, 0.98rem);
+			line-height: 1.3;
+			color: var(--primary);
+		}
+
+		#skills .story {
+			padding-top: 6px;
+			padding-bottom: 6px;
+		}
+
+		#skills .story:last-child {
+			padding-bottom: 0;
 		}
 
 		.project-link {
 			display: inline-flex;
 			align-items: center;
-			gap: 6px;
-			color: #1f1f1f;
-			text-decoration: none;
+			gap: 8px;
+			color: var(--primary);
+			font-weight: 700;
 		}
 
-		.project-link:hover {
-			color: #bb1919;
-			text-decoration: underline;
+		.project-link:hover,
+		.project-link:focus-visible {
+			color: var(--accent-strong);
 		}
 
 		.cert-link {
-			color: #bb1919;
-			text-decoration: underline;
-		}
-
-		.cert-link:hover {
-			color: #8f0f0f;
-			text-decoration: none;
+			color: var(--accent-strong);
+			font-weight: 600;
 		}
 
 		.github-icon {
-			width: 14px;
-			height: 14px;
+			width: 16px;
+			height: 16px;
 			fill: currentColor;
-			flex: 0 0 14px;
+			flex: 0 0 16px;
 		}
 
 		.meta {
-			color: #6a6a6a;
-			font-size: 11px;
-			margin-bottom: 4px;
-		}
-
-		.tag {
-			display: inline-block;
-			font-size: 10px;
-			color: #fff;
-			background: #bb1919;
-			padding: 1px 5px;
-			margin-right: 6px;
-			border: 1px solid #8d0f0f;
-			font-weight: bold;
+			margin: 0 0 6px;
+			font-size: 0.7rem;
+			font-weight: 700;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			color: var(--accent-strong);
 		}
 
 		.skills-table {
 			width: 100%;
 			border-collapse: collapse;
-			font-size: 11px;
+			font-size: 0.86rem;
+			background: var(--panel-soft);
+			border: 1px solid var(--border);
+			border-radius: 12px;
+			overflow: hidden;
 		}
 
 		.table-wrap {
 			overflow-x: auto;
 			-webkit-overflow-scrolling: touch;
+			background: var(--panel-soft);
+			border: 1px solid var(--border);
+			border-radius: 12px;
 		}
 
 		.skills-table th,
 		.skills-table td {
-			border: 1px solid #dddddd;
-			padding: 4px 6px;
+			padding: 9px 10px;
 			text-align: left;
+			border: 1px solid var(--border);
+			vertical-align: top;
 		}
 
 		.skills-table th {
-			background: #f2f2f2;
-			color: #333;
+			background: linear-gradient(180deg, #f8faf8 0%, #edf5ef 100%);
+			color: var(--primary-soft);
+			font-weight: 800;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			font-size: 0.72rem;
+		}
+
+		.skills-table td:first-child {
+			width: 32%;
+			font-weight: 700;
+			color: var(--primary-soft);
+			white-space: nowrap;
+		}
+
+		.skills-table tbody tr:nth-child(even) {
+			background: rgba(148, 163, 184, 0.04);
 		}
 
 		.footer {
-			border-top: 3px solid #bb1919;
-			background: #111;
-			color: #d7d7d7;
-			font-size: 11px;
+			padding: 14px 18px 16px;
+			font-size: 0.74rem;
 			text-align: center;
-			padding: 10px;
-			line-height: 1.5;
+			color: rgba(226, 232, 240, 0.92);
+			background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
 		}
 
-		@media (max-width: 768px) {
-			body {
-				font-size: 13px;
+		@media (max-width: 900px) {
+			.brand {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+
+			.brand-badges {
+				justify-content: flex-start;
+			}
+
+			#about,
+			#projects,
+			#skills,
+			#education,
+			#experience-notes,
+			#experience,
+			#languages,
+			#contact {
+				grid-column: 1 / -1;
+			}
+		}
+
+		@media (max-width: 980px) {
+			.primary-nav {
+				display: block;
+			}
+
+			.primary-nav-links {
+				display: grid;
+				grid-template-columns: repeat(4, minmax(0, 1fr));
+				width: 100%;
+			}
+
+			.primary-nav-links a {
+				flex: none;
+				width: 100%;
+				border-right: none;
+				border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+			}
+
+			.nav-social {
+				border-left: none;
+				border-top: 1px solid rgba(148, 163, 184, 0.25);
+				justify-content: space-around;
+				width: 100%;
+			}
+
+			.nav-social a {
+				flex: 1;
+				width: auto;
+			}
+		}
+
+		@media (max-width: 640px) {
+			.content {
+				display: grid;
+				gap: 12px;
 			}
 
 			.page-wrap {
-				margin: 8px auto;
-				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+				margin: 10px auto 16px;
+				border-radius: 12px;
 			}
 
 			.topbar {
-				font-size: 10px;
-				padding: 6px 8px;
+				padding: 8px 12px;
+				font-size: 0.62rem;
 			}
 
-			.brand h1 {
-				font-size: 24px;
-				line-height: 1.2;
+			.brand {
+				padding: 18px 14px 14px;
 			}
 
 			.brand p {
-				font-size: 11px;
+				font-size: 0.84rem;
 			}
 
 			.brand-track {
-				display: block;
-				margin-top: 2px;
+				white-space: normal;
 			}
 
 			.brand-sep {
@@ -379,103 +570,31 @@
 			}
 
 			.ticker {
-				padding: 6px;
+				padding: 7px 12px;
 			}
 
-			.primary-nav {
-				display: block;
-				padding: 0;
+			.main {
+				padding: 12px;
 			}
 
-			.primary-nav-links {
-				white-space: normal;
-				overflow-x: visible;
-				display: flex;
-				flex-wrap: wrap;
-			}
-
-			.primary-nav-links a {
-				width: 25%;
-				box-sizing: border-box;
-				text-align: center;
-				padding: 9px 6px;
-				border-right: 1px solid #4b4b4b;
-				border-bottom: 1px solid #4b4b4b;
-			}
-
-			.nav-social {
-				display: flex;
-				justify-content: center;
-				border-left: none;
-				border-top: 4px solid #bb1919;
-			}
-
-			.nav-social a {
-				width: 33.333%;
-				height: 34px;
-				border-right: 1px solid #4b4b4b;
-				border-bottom: 1px solid #4b4b4b;
-			}
-
-			.main,
-			.main tbody,
-			.main tr,
-			.main td {
-				display: block;
-				width: 100%;
-				box-sizing: border-box;
-			}
-
-			.skills-table,
-			.skills-table tbody {
-				display: table;
-				width: 100%;
-			}
-
-			.skills-table tr {
-				display: table-row;
-			}
-
-			.skills-table th,
-			.skills-table td {
-				display: table-cell;
-				width: auto;
-				box-sizing: border-box;
-			}
-
-			.sidebar {
-				border-right: none;
-				border-bottom: 1px solid #dddddd;
-				padding: 6px;
-			}
-
-			.content {
-				padding: 6px;
-			}
-
-			.box h2,
-			.box h3 {
-				font-size: 11px;
-				padding: 6px;
+			.box > summary {
+				padding: 11px 12px;
 			}
 
 			.box .inner {
-				padding: 7px;
+				padding: 11px 12px 12px;
+			}
+
+			.modules-line {
+				grid-template-columns: 1fr;
 			}
 
 			.story h4 {
-				font-size: 16px;
+				font-size: 0.94rem;
 			}
 
 			.footer {
-				padding: 8px;
-				font-size: 10px;
-			}
-		}
-
-		@media (max-width: 480px) {
-			.primary-nav-links a {
-				width: 50%;
+				padding: 10px 12px;
 			}
 		}
 	</style>
@@ -486,21 +605,24 @@
 			Last updated: August 2026
 		</div>
 
-		<div class="brand">
-			<h1>Emre Aslan</h1>
-			<p>BSc Computer Science Student @ University of Reading <span class="brand-sep">|</span> <span class="brand-track">Software • Hardware • Systems</span></p>
-		</div>
+		<header class="brand" aria-label="Introduction">
+			<div>
+				<p class="eyebrow">Computer Science Student</p>
+				<h1>Emre Aslan</h1>
+				<p>BSc Computer Science Student @ University of Reading</p>
+			</div>
+		</header>
 
-		<div class="primary-nav">
+		<nav class="primary-nav" aria-label="Main navigation">
 			<div class="primary-nav-links">
-				<a href="#about">About</a>
-				<a href="#projects">Projects</a>
-				<a href="#skills">Skills</a>
-				<a href="#education">Education</a>
-				<a href="#experience-notes">Experience</a>
-				<a href="#experience">Certifications</a>
-				<a href="#languages">Languages</a>
-				<a href="#contact">Contact</a>
+				<a href="#about" data-target="about">About</a>
+				<a href="#projects" data-target="projects">Projects</a>
+				<a href="#skills" data-target="skills">Skills</a>
+				<a href="#education" data-target="education">Education</a>
+				<a href="#experience-notes" data-target="experience-notes">Experience</a>
+				<a href="#experience" data-target="experience">Certifications</a>
+				<a href="#languages" data-target="languages">Languages</a>
+				<a href="#contact" data-target="contact">Contact</a>
 			</div>
 			<div class="nav-social" aria-label="Profile links">
 				<a href="https://github.com/emreaslan15" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
@@ -521,218 +643,216 @@
 					</svg>
 				</a>
 			</div>
-		</div>
+		</nav>
 
-		<div class="ticker">
-			<div class="ticker-scroll" aria-label="Latest updates">
-				<div class="ticker-track">Welcome to my portfolio! Here you can find my latest projects and updates.</div>
+		<main class="main">
+			<div class="content">
+				<details class="box" id="about" open>
+					<summary>About Me</summary>
+					<div class="inner">
+						<p>
+							Final-year Computer Science student at the University of Reading with practical experience in
+							Python, Java, SQL, and Linux. I build coursework and personal projects focused on backend logic,
+							data handling, and reliable software design.
+						</p>
+						<p>
+							I also work hands-on with systems and hardware, including diagnostics, OS setup, BIOS configuration,
+							and homelab networking. Currently seeking graduate opportunities where I can
+							contribute, learn quickly, and grow as a software engineer.
+						</p>
+					</div>
+				</details>
+
+				<details class="box" id="projects" open>
+					<summary>Featured Projects</summary>
+					<div class="inner">
+						<div class="story">
+							<h4>
+								<a class="project-link" href="https://github.com/emreaslan15/crm-coursework" target="_blank" rel="noopener">
+									CRM Solution
+									<svg class="github-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+										<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+									</svg>
+								</a>
+							</h4>
+							<div class="meta">Java • OOP • Coursework</div>
+							Developed a Java CRM including data persistence, customer filtering, and report generation as part of independent university coursework.
+						</div>
+
+						<div class="story">
+							<h4>
+								<a class="project-link" href="https://github.com/emreaslan15/gridconquest-clash" target="_blank" rel="noopener">
+									Grid Conquest: Clash!
+									<svg class="github-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+										<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+									</svg>
+								</a>
+							</h4>
+							<div class="meta">Python • Algorithms • Multiplayer CLI</div>
+							Built an interactive command-line-based multiplayer game that simulates medieval battles, with matrix mathematics, algorithm-heavy logic, and long-form calculations.
+						</div>
+
+						<div class="story">
+							<h4>
+								<a class="project-link" href="https://github.com/emreaslan15/othello-qt" target="_blank" rel="noopener">
+									Othello/Reversi Qt GUI
+									<svg class="github-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+										<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+									</svg>
+								</a>
+							</h4>
+							<div class="meta">Python • PyQt6 • 2nd Year Practical</div>
+							Implemented a graphical interface on top of an existing command-line game, including intuitive widgets, status updates, and game-state feedback.
+						</div>
+
+						<div class="story">
+							<h4>QR Code Generator</h4>
+							<div class="meta">Python • Team Project • CI/CD</div>
+							Implemented QR encoding logic for versions 1 and 2 with maximum error correction and full mask pattern support. Set up a local GitLab CI Runner to support automated testing and integration for a team of five students.
+						</div>
+
+						<div class="story">
+							<h4>SQL Database Project</h4>
+							<div class="meta">PostgreSQL • Team of 4 • Data Integrity</div>
+							Collaborated in a team of four to design, implement, and query a relational database for tennis data, modelling complex relationships and ensuring integrity constraints.
+						</div>
+					</div>
+				</details>
+
+				<details class="box" id="skills" open>
+					<summary>Technical Skills</summary>
+					<div class="inner">
+						<div class="story">
+							<h4>Programming Languages</h4>
+							<div class="meta">Python • Java • C# • Bash</div>
+						</div>
+						<div class="story">
+							<h4>Libraries &amp; Frameworks</h4>
+							<div class="meta">NumPy • Pandas • scikit-learn • PyQt • JUnit • ASP.NET</div>
+						</div>
+						<div class="story">
+							<h4>Systems &amp; Services</h4>
+							<div class="meta">Linux/Unix • Docker • Portainer • Self-hosted game servers</div>
+						</div>
+						<div class="story">
+							<h4>Networking</h4>
+							<div class="meta">Static IPs • DHCP • DNS • WAP setup</div>
+						</div>
+						<div class="story">
+							<h4>Databases</h4>
+							<div class="meta">Relational design • PostgreSQL • pgAdmin • SQL</div>
+						</div>
+						<div class="story">
+							<h4>Hardware &amp; Diagnostics</h4>
+							<div class="meta">PC assembly • component replacement • device repair</div>
+						</div>
+						<div class="story">
+							<h4>Tools</h4>
+							<div class="meta">Git • GitHub • GitLab CI • Maven</div>
+						</div>
+					</div>
+				</details>
+
+				<details class="box" id="education" open>
+					<summary>Education</summary>
+					<div class="inner">
+						<p>
+							<strong>University of Reading</strong><br />
+							BSc Computer Science, October 2024 - June 2027 (expected)<br />
+							<span class="modules-line"><span class="modules-label">Modules:</span><span class="modules-content">Object-Oriented&nbsp;Programming&nbsp;(Java), Data&nbsp;Structures&nbsp;&amp;&nbsp;Algorithms, Programming&nbsp;in&nbsp;Python, Databases, Artificial&nbsp;Intelligence, Operating&nbsp;Systems&nbsp;&amp;&nbsp;Networking, Software&nbsp;Engineering&nbsp;&amp;&nbsp;Professional&nbsp;Development, Software&nbsp;Systems&nbsp;Design.</span></span>
+							<span class="modules-line"><span class="modules-label"></span><span class="modules-content">Currently studying Machine&nbsp;Learning, Data&nbsp;Integration&nbsp;&amp;&nbsp;Information&nbsp;Visualisation, Cloud-based&nbsp;AI&nbsp;Solutions, Image&nbsp;Analysis&nbsp;&amp;&nbsp;Visual&nbsp;Intelligence.</span></span>
+						</p>
+						<p>
+							<strong>Windsor College</strong><br />
+							A-Levels, September 2022 - June 2024<br />
+							<span class="modules-line"><span class="modules-label">Subjects:</span><span class="modules-content">Computer Science, Law, Mathematics.</span></span>
+						</p>
+						<p>
+							<strong>Slough and Eton CofE Business &amp; Enterprise College</strong><br />
+							GCSEs, September 2017 - June 2022<br />
+							<span class="modules-line"><span class="modules-label">Subjects:</span><span class="modules-content">English Language, English Literature, Mathematics, Computer Science, History, Religious Studies, French, Chemistry, Physics, Biology.</span></span>
+						</p>
+					</div>
+				</details>
+
+				<details class="box" id="experience-notes" open>
+					<summary>Experience</summary>
+					<div class="inner">
+						<p>
+							<strong>Systems &amp; Hardware Practice</strong><br />
+							Hands-on experience repairing phones and laptops, diagnosing hardware and software issues, reinstalling operating systems, updating and configuring BIOS settings, and configuring software for end users. Built and assembled multiple desktop PCs from scratch.
+						</p>
+						<p>
+							<strong>Networking &amp; Home Lab Learning</strong><br />
+							Practical home networking experience including adjusting DHCP ranges, assigning static IP addresses, configuring DNS settings, and tuning WAP SSIDs and channels. Configured a homelab PC with SMB shares for NAS use, and used Docker with Portainer to deploy and manage self-hosted game servers.
+						</p>
+					</div>
+				</details>
+
+				<details class="box" id="experience" open>
+					<summary>Certifications</summary>
+					<div class="inner">
+						<p>
+							<a class="cert-link" href="https://academy.hackthebox.com/achievement/2248950/18" target="_blank" rel="noopener">Linux Fundamentals</a><br />
+							Hack The Box (ID: 2248950/18)
+						</p>
+						<p>
+							<a class="cert-link" href="https://www.futurelearn.com/certificates/1obnrz3" target="_blank" rel="noopener">Begin Robotics</a><br />
+							University of Reading x FutureLearn (ID: 1obnrz3)
+						</p>
+						<p>
+							<a class="cert-link" href="https://www.freecodecamp.org/certification/emreaslan15/foundational-c-sharp-with-microsoft" target="_blank" rel="noopener">Foundational C#</a><br />
+							Microsoft x freeCodeCamp
+						</p>
+					</div>
+				</details>
+
+				<details class="box" id="languages" open>
+					<summary>Languages</summary>
+					<div class="inner">
+						<p><strong>English</strong> - Fluent</p>
+						<p><strong>Turkish</strong> - Intermediate</p>
+						<p><strong>French</strong> - Basic</p>
+						<hr style="border: none; border-top: 1px solid #d7e0d8; margin: 12px 0 0;" />
+						<p style="margin-top: 10px; color: #5d6f68; font-size: 0.9em;">
+							For programming languages, see the <a class="cert-link" href="#skills" onclick="var d=document.getElementById('skills'); if(d){ if(!d.open){ d.open=true; } setTimeout(function(){ d.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 20); } return false;">Technical Skills</a> section.
+						</p>
+					</div>
+				</details>
+
+				<details class="box" id="contact" open>
+					<summary>Contact</summary>
+					<div class="inner">
+						<p><strong>Email:</strong> <a href="mailto:emrea15@outlook.com">emrea15@outlook.com</a></p>
+						<p><strong>Phone:</strong> <a href="tel:+447856893272">+44 7856 893272</a></p>
+						<p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/emreaslan15" target="_blank" rel="noopener">linkedin.com/in/emreaslan15</a></p>
+						<p><strong>Location:</strong> Slough, UK</p>
+						<p><strong>Open To:</strong> graduate roles, internships, and other software engineering opportunities.</p>
+					</div>
+				</details>
 			</div>
-		</div>
-
-		<table class="main">
-			<tr>
-				<td class="content">
-					<div class="box" id="about">
-						<h2>About Me</h2>
-						<div class="inner">
-							<p>
-								Final-year Computer Science student at the University of Reading with practical experience in
-								Python, Java, SQL, and Linux. I build coursework and personal projects focused on backend logic,
-								data handling, and reliable software design.
-							</p>
-							<p>
-								I also work hands-on with systems and hardware, including diagnostics, OS setup, BIOS configuration,
-								and homelab networking. Currently seeking internship or placement opportunities where I can
-								contribute, learn quickly, and grow as a software engineer.
-							</p>
-						</div>
-					</div>
-
-					<div class="box" id="projects">
-						<h2>Featured Projects</h2>
-						<div class="inner">
-							<div class="story">
-								<h4>
-									<a class="project-link" href="https://github.com/emreaslan15/crm-coursework" target="_blank" rel="noopener">
-										CRM Solution
-										<svg class="github-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-											<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
-										</svg>
-									</a>
-								</h4>
-								<div class="meta">Java • OOP • Coursework</div>
-								Developed a Java CRM including data persistence, customer filtering, and report generation as part of
-								independent university coursework.
-							</div>
-
-							<div class="story">
-								<h4>
-									<a class="project-link" href="https://github.com/emreaslan15/gridconquest-clash" target="_blank" rel="noopener">
-										Grid Conquest: Clash!
-										<svg class="github-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-											<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
-										</svg>
-									</a>
-								</h4>
-								<div class="meta">Python • Algorithms • Multiplayer CLI</div>
-								Built an interactive command-line-based multiplayer game that simulates medieval battles, with matrix mathematics,
-								algorithm-heavy logic, and long-form calculations.
-							</div>
-
-							<div class="story">
-								<h4>
-									<a class="project-link" href="https://github.com/emreaslan15/othello-qt" target="_blank" rel="noopener">
-										Othello/Reversi Qt GUI
-										<svg class="github-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-											<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
-										</svg>
-									</a>
-								</h4>
-								<div class="meta">Python • PyQt6 • 2nd Year Practical</div>
-								Implemented a graphical interface on top of an existing command-line game, including intuitive widgets,
-								status updates, and game-state feedback.
-							</div>
-
-							<div class="story">
-								<h4>
-									QR Code Generator
-								</h4>
-								<div class="meta">Python • Team Project • CI/CD</div>
-								Implemented QR encoding logic for versions 1 and 2 with maximum error correction and full mask pattern support.
-								Set up a local GitLab CI Runner to support automated testing and integration for a team of five students.
-							</div>
-
-							<div class="story">
-								<h4>
-									SQL Database Project
-								</h4>
-								<div class="meta">PostgreSQL • Team of 4 • Data Integrity</div>
-								Collaborated in a team of four to design, implement, and query a relational database for tennis data,
-								modelling complex relationships and ensuring integrity constraints.
-							</div>
-						</div>
-					</div>
-
-					<div class="box" id="skills">
-						<h2>Technical Skills</h2>
-						<div class="inner">
-							<div class="table-wrap">
-								<table class="skills-table">
-									<tr>
-										<th>Category</th>
-										<th>Tools & Technologies</th>
-									</tr>
-									<tr>
-										<td>Programming Languages</td>
-										<td>Python, Java, C#, Bash</td>
-									</tr>
-									<tr>
-										<td>Libraries & Frameworks</td>
-										<td>NumPy, Pandas, scikit-learn, PyQt, JUnit, ASP.NET</td>
-									</tr>
-									<tr>
-										<td>Systems & Services</td>
-										<td>Linux/Unix (Ubuntu/Debian-based), Windows device setup/configuration, Docker, Portainer, Self-hosted game servers including port forwarding</td>
-									</tr>
-									<tr>
-										<td>Networking</td>
-										<td>Static IP setup, DHCP ranges, DNS selection, WAP SSID/channel configuration</td>
-									</tr>
-									<tr>
-										<td>Databases</td>
-										<td>Relational database design, PostgreSQL & pgAdmin, SQL querying</td>
-									</tr>
-									<tr>
-										<td>Hardware & Diagnostics</td>
-										<td>Desktop/laptop/mobile diagnostics, component replacement, and assembly</td>
-									</tr>
-									<tr>
-										<td>Tools</td>
-										<td>Git, GitHub, GitLab CI Runner, Maven</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-					</div>
-
-					<div class="box" id="education">
-						<h2>Education</h2>
-						<div class="inner">
-							<p>
-								<strong>University of Reading</strong><br />
-								BSc Computer Science, October 2024 - Present<br />
-								Expected graduation: 2027 (2028 with industrial placement year)<br />
-								<span class="modules-line"><span class="modules-label">Modules:</span><span class="modules-content">Object-Oriented&nbsp;Programming&nbsp;(Java), Data&nbsp;Structures&nbsp;&amp;&nbsp;Algorithms,
-								Programming&nbsp;in&nbsp;Python, Databases, Artificial&nbsp;Intelligence, Operating&nbsp;Systems&nbsp;&amp;&nbsp;Networking,
-								Software&nbsp;Engineering&nbsp;&amp;&nbsp;Professional&nbsp;Development, Software&nbsp;Systems&nbsp;Design.</span></span>
-							</p>
-							<p>
-								<strong>Windsor College</strong><br />
-								A-Levels, September 2022 - 2024<br />
-								<span class="modules-line"><span class="modules-label">Subjects:</span><span class="modules-content">Computer&nbsp;Science&nbsp;(B), Law&nbsp;(C), Mathematics&nbsp;(E).</span></span>
-							</p>
-							<p>
-								<strong>Slough and Eton CofE Business &amp; Enterprise College</strong><br />
-								GCSEs, September 2017 - 2022<br />
-								<span class="modules-line"><span class="modules-label">Subjects:</span><span class="modules-content">English Language&nbsp;(7), English Literature&nbsp;(7), Mathematics&nbsp;(7), Computer Science&nbsp;(7), History&nbsp;(7), Religious Studies&nbsp;(7), French&nbsp;(7), Chemistry&nbsp;(7), Physics&nbsp;(7), Biology&nbsp;(6).</span></span>
-							</p>
-						</div>
-					</div>
-
-					<div class="box" id="experience-notes">
-						<h2>Experience</h2>
-						<div class="inner">
-							<p>
-								<strong>Systems &amp; Hardware Practice</strong><br />
-								Hands-on experience repairing phones and laptops, diagnosing hardware and software issues,
-								reinstalling operating systems, updating and configuring BIOS settings, and 
-								configuring software for end users. Built and assembled multiple desktop PCs from scratch.
-							</p>
-							<p>
-								<strong>Networking &amp; Home Lab Learning</strong><br />
-								Practical home networking experience including adjusting DHCP ranges, assigning static IP addresses,
-								configuring DNS settings, and tuning WAP SSIDs and channels. Configured a homelab PC with SMB
-								shares for NAS use, and used Docker with Portainer to deploy and manage self-hosted game servers.
-							</p>
-						</div>
-					</div>
-
-					<div class="box" id="experience">
-						<h2>Certifications</h2>
-						<div class="inner">
-							<p><strong>Hack The Box</strong> - <a class="cert-link" href="https://academy.hackthebox.com/achievement/2248950/18" target="_blank" rel="noopener">Linux Fundamentals</a> (ID: 2248950/18)</p>
-							<p><strong>University of Reading x FutureLearn</strong> - <a class="cert-link" href="https://www.futurelearn.com/certificates/1obnrz3" target="_blank" rel="noopener">Begin Robotics</a> (ID: 1obnrz3)</p>
-							<p><strong>Microsoft x freeCodeCamp</strong> - Foundational C#</p>
-						</div>
-					</div>
-
-					<div class="box" id="languages">
-						<h2>Languages</h2>
-						<div class="inner">
-							<p><strong>English</strong> - Fluent</p>
-							<p><strong>Turkish</strong> - Intermediate</p>
-							<p><strong>French</strong> - Basic</p>
-						</div>
-					</div>
-
-					<div class="box" id="contact">
-						<h2>Contact</h2>
-						<div class="inner">
-							<p><strong>Email:</strong> <a href="mailto:emrea15@outlook.com">emrea15@outlook.com</a></p>
-							<p><strong>Phone:</strong> <a href="tel:+447856893272">+44 7856 893272</a></p>
-							<p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/emreaslan15" target="_blank" rel="noopener">linkedin.com/in/emreaslan15</a></p>
-							<p><strong>Location:</strong> Slough, UK</p>
-							<p><strong>Open To:</strong> graduate roles, internships, and other software engineering opportunities.</p>
-						</div>
-					</div>
-
-				</td>
-			</tr>
-		</table>
+		</main>
 
 		<div class="footer">
 			This website was made partially using AI tools.
 		</div>
 	</div>
+
+	<script>
+		document.querySelectorAll('.primary-nav-links a').forEach((link) => {
+			link.addEventListener('click', (event) => {
+				event.preventDefault();
+				const targetId = link.dataset.target;
+				const targetCard = document.getElementById(targetId);
+				if (!targetCard) return;
+
+				if (!targetCard.open) {
+					targetCard.open = true;
+				}
+				targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			});
+		});
+	</script>
 </body>
+
 </html>
